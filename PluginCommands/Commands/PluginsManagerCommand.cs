@@ -41,7 +41,7 @@ namespace PluginCommands.Commands
         /// <summary>
         /// Contains command name
         /// </summary>
-        public override string Command { get; } = "pluginscommands";
+        public override string Command { get; } = "plugincommands";
 
         /// <summary>
         /// Defines command aliases
