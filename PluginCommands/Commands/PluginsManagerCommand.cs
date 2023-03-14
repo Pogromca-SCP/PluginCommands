@@ -93,7 +93,7 @@ namespace PluginCommands.Commands
 
             foreach (var plugin in AssemblyLoader.InstalledPlugins)
             {
-                sb.AppendLine($" - {plugin.PluginName} <color=grey>v{plugin.PluginVersion}</color>");
+                sb.AppendLine($" - {plugin.PluginName} <color=grey>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
             }
 
             response = sb.ToString();

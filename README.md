@@ -7,13 +7,13 @@ This plugin was created using [official Northwood Plugin API](https://github.com
 Simply put plugin `.dll` file inside your server's plugins folder.
 
 ## Commands
-|Command|Usage|Aliases|Description|
-|---|---|---|---|
-|plugincommands|[load/reload/unload] [Plugin Name]|plcommands plcmds|Provides subcommands for plugins management at runtime and displays the list of installed plugins.|
+|Command|Usage|Aliases|Description|Required permissions|
+|---|---|---|---|---|
+|plugincommands|[load/reload/unload] [Plugin Name]|plcommands plcmds|Provides subcommands for plugins management at runtime and displays the list of installed plugins.|ServerConsoleCommands|
 
 ### `plugincommands` subcommands
-|Command|Usage|Aliases|Description|
-|---|---|---|---|
-|load|[Plugin Name]|enable on|Loads an installed plugin.|
-|reload|[Plugin Name]|refresh reset|Reloads an installed plugin.|
-|unload|[Plugin Name]|disable off|Unloads an installed plugin.|
+|Command|Usage|Aliases|Description|Required permissions|
+|---|---|---|---|---|
+|load|[Plugin Name]|enable on|Loads an installed plugin.|ServerConsoleCommands|
+|reload|[Plugin Name]|refresh reset|Reloads an installed plugin.|ServerConsoleCommands|
+|unload|[Plugin Name]|disable off|Unloads an installed plugin.|ServerConsoleCommands|
