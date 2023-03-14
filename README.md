@@ -7,6 +7,7 @@ This plugin was created using [official Northwood Plugin API](https://github.com
 Simply put plugin `.dll` file inside your server's plugins folder.
 
 ## Commands
+Commands from this plugin can be accessed from remote admin or server console.
 |Command|Usage|Aliases|Description|Required permissions|
 |---|---|---|---|---|
 |plugincommands|[load/reload/unload] [Plugin Name]|plcommands plcmds|Provides subcommands for plugins management at runtime and displays the list of installed plugins.|ServerConsoleCommands|
