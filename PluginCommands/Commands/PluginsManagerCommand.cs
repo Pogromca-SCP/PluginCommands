@@ -11,12 +11,18 @@ namespace PluginCommands.Commands
     /// Main command provided by the plugin
     /// </summary>
     [CommandHandler(typeof(RemoteAdminCommandHandler))]
+    [CommandHandler(typeof(GameConsoleCommandHandler))]
     public class PluginsManagerCommand : ParentCommand, IUsageProvider
     {
         /// <summary>
         /// Permission required by this command and any of its subcommands
         /// </summary>
         public const PlayerPermissions PluginsManagementPermissions = PlayerPermissions.ServerConsoleCommands;
+
+        /// <summary>
+        /// Contains server console's sender name
+        /// </summary>
+        public const string ServerConsoleName = "SERVER CONSOLE";
 
         /// <summary>
         /// Checks if command sender has required permissions for plugins management
@@ -29,7 +35,7 @@ namespace PluginCommands.Commands
             {
                 return "Command sender is null.";
             }
-
+            
             if (!sender.CheckPermission(PluginsManagementPermissions))
             {
                 return "You do not have permissions to run this command.";
@@ -89,11 +95,13 @@ namespace PluginCommands.Commands
                 return false;
             }
 
+            var isConsole = ServerConsoleName.Equals(sender.LogName);
             var sb = new StringBuilder("Currently installed plugins:\n");
 
             foreach (var plugin in AssemblyLoader.InstalledPlugins)
             {
-                sb.AppendLine($" - {plugin.PluginName} <color=grey>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
+                sb.AppendLine(isConsole ? $" - {plugin.PluginName} v{plugin.PluginVersion} @{plugin.PluginAuthor}" :
+                    $" - {plugin.PluginName} <color=grey>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
             }
 
             response = sb.ToString();
@@ -133,16 +141,17 @@ namespace PluginCommands.Commands
                 return false;
             }
 
+            var isConsole = PluginsManagerCommand.ServerConsoleName.Equals(sender.LogName);
             var pluginName = string.Join(" ", arguments);
             var plugin = AssemblyLoader.InstalledPlugins.FirstOrDefault(p => p.PluginName.Equals(pluginName));
 
             if (plugin is null)
             {
-                response = $"Plugin '<color=green>{pluginName}</color>' not found.";
+                response = isConsole ? $"Plugin '{pluginName}' not found." : $"Plugin '<color=green>{pluginName}</color>' not found.";
                 return false;
             }
 
-            response = HandlePluginCommand(plugin);
+            response = HandlePluginCommand(plugin, isConsole);
             return true;
         }
 
@@ -150,7 +159,8 @@ namespace PluginCommands.Commands
         /// Handles the plugin command functionality
         /// </summary>
         /// <param name="plugin">Found plugin</param>
+        /// <param name="isConsole">Tells whether or not the command is executed by server console</param>
         /// <returns>Response to display in sender's console</returns>
-        protected abstract string HandlePluginCommand(PluginHandler plugin);
+        protected abstract string HandlePluginCommand(PluginHandler plugin, bool isConsole);
     }
 }

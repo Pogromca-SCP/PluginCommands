@@ -27,11 +27,12 @@ namespace PluginCommands.Commands
         /// Handles the plugin command functionality
         /// </summary>
         /// <param name="plugin">Found plugin</param>
+        /// <param name="isConsole">Tells whether or not the command is executed by server console</param>
         /// <returns>Response to display in sender's console</returns>
-        protected override string HandlePluginCommand(PluginHandler plugin)
+        protected override string HandlePluginCommand(PluginHandler plugin, bool isConsole)
         {
             plugin.Unload();
-            return $"Plugin '<color=green>{plugin.PluginName}</color>' unloaded.";
+            return isConsole ? $"Plugin '{plugin.PluginName}' unloaded." : $"Plugin '<color=green>{plugin.PluginName}</color>' unloaded.";
         }
     }
 }
