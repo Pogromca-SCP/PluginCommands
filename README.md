@@ -11,11 +11,6 @@ This plugin was created using [official Northwood Plugin API](https://github.com
 ## Installation
 Simply put plugin `.dll` file inside your server's plugins folder.
 
-## Additional build dependencies
-The following SCP:SL assemblies must be referenced when building the project:
-- `Assembly-CSharp.dll`
-- `CommandSystem.Core.dll`
-
 ## Commands
 Commands from this plugin can be accessed from remote admin or server console.
 | Command                              | Usage                              | Aliases           | Description                                | Required permissions  |
@@ -28,3 +23,8 @@ Commands from this plugin can be accessed from remote admin or server console.
 | load    | [Plugin Name] | enable on     | Loads an installed plugin.   | ServerConsoleCommands |
 | reload  | [Plugin Name] | refresh reset | Reloads an installed plugin. | ServerConsoleCommands |
 | unload  | [Plugin Name] | disable off   | Unloads an installed plugin. | ServerConsoleCommands |
+
+## Additional build dependencies
+The following SCP:SL assemblies must be referenced when building the project:
+- `Assembly-CSharp.dll`
+- `CommandSystem.Core.dll`
