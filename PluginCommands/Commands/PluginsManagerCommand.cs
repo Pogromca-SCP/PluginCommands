@@ -36,9 +36,9 @@ namespace PluginCommands.Commands
                 return "Command sender is null.";
             }
             
-            if (!sender.CheckPermission(PluginsManagementPermissions))
+            if (!sender.CheckPermission(PluginsManagementPermissions, out var response))
             {
-                return "You do not have permissions to run this command.";
+                return response;
             }
 
             return null;
