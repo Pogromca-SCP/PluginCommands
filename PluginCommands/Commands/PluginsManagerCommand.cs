@@ -20,11 +20,6 @@ namespace PluginCommands.Commands
         public const PlayerPermissions PluginsManagementPermissions = PlayerPermissions.ServerConsoleCommands;
 
         /// <summary>
-        /// Contains server console's sender name
-        /// </summary>
-        public const string ServerConsoleName = "SERVER CONSOLE";
-
-        /// <summary>
         /// Checks if command sender has required permissions for plugins management
         /// </summary>
         /// <param name="sender">Sender to verify</param>
@@ -95,7 +90,7 @@ namespace PluginCommands.Commands
                 return false;
             }
 
-            var isConsole = ServerConsoleName.Equals(sender.LogName);
+            var isConsole = sender is ServerConsoleSender;
             var sb = new StringBuilder("Currently installed plugins:\n");
 
             foreach (var plugin in AssemblyLoader.InstalledPlugins)
@@ -141,7 +136,7 @@ namespace PluginCommands.Commands
                 return false;
             }
 
-            var isConsole = PluginsManagerCommand.ServerConsoleName.Equals(sender.LogName);
+            var isConsole = sender is ServerConsoleSender;
             var pluginName = string.Join(" ", arguments);
             var plugin = AssemblyLoader.InstalledPlugins.FirstOrDefault(p => p.PluginName.Equals(pluginName));
 
