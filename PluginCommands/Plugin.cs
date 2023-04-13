@@ -5,12 +5,12 @@ using PluginAPI.Core;
 namespace PluginCommands
 {
     /// <summary>
-    /// Defines plugin functionality
+    /// Defines plugin functionality.
     /// </summary>
     public class Plugin
     {
         /// <summary>
-        /// Loads and initializes the plugin
+        /// Loads and initializes the plugin.
         /// </summary>
         [PluginPriority(LoadPriority.Highest)]
         [PluginEntryPoint("Plugin Commands", "1.1.2", "Commands for plugins management at runtime", "Adam Szerszenowicz")]

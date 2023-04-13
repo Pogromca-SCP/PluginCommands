@@ -35,3 +35,6 @@ Commands from this plugin can be accessed from remote admin or server console.
 The following SCP:SL assemblies must be referenced when building the project:
 - `Assembly-CSharp.dll`
 - `CommandSystem.Core.dll`
+- `Mirror.dll` (required only for unit tests project)
+- `NorthwoodLib.dll` (required only for unit tests project)
+- `UnityEngine.CoreModule.dll` (required only for unit tests project)
