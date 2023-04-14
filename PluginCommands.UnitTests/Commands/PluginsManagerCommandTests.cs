@@ -6,6 +6,7 @@ using CommandSystem;
 using FluentAssertions;
 using System.Collections.Generic;
 using PluginAPI.Loader;
+using GameCore;
 using PluginAPI.Core;
 using PluginAPI.Loader.Features;
 using System.Reflection;
@@ -65,6 +66,7 @@ namespace PluginCommands.UnitTests.Commands
         public static void InstallTestPlugins(IEnumerable<object> pluginsToInstall)
         {
             AssemblyLoader.Plugins.Clear();
+            _ = ConfigFile.ServerConfig;
             var plugins = new Dictionary<Type, PluginHandler>();
 
             foreach (var pl in pluginsToInstall)
