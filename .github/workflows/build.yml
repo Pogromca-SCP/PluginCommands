@@ -1,0 +1,47 @@
+name: Build Plugin Commands
+
+on: [push, pull_request]
+
+env:
+  DEPOT_DOWNLOADER_VERSION: 2.4.7 
+  SL_REFERENCES: D:\a\NwPluginAPI\SCPSL_REFERENCES\SCPSL_Data\Managed
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: 6.0.x
+        
+    - name: Download depot downloader
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Force -Path D:\a\NwPluginAPI
+        New-Item -ItemType Directory -Force -Path D:\a\NwPluginAPI\DepotDownloader
+        Invoke-WebRequest -Uri "https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_${{ env.DEPOT_DOWNLOADER_VERSION }}/depotdownloader-${{ env.DEPOT_DOWNLOADER_VERSION }}.zip" -OutFile "D:\a\NwPluginAPI\depotdownloader.zip"
+        Expand-Archive -Path D:\a\NwPluginAPI\depotdownloader.zip -PassThru -DestinationPath D:\a\NwPluginAPI/DepotDownloader
+        
+    - name: Download SCP:SL references
+      shell: pwsh
+      run: |
+        New-Item -ItemType Directory -Force -Path D:\a\NwPluginAPI\SCPSL_REFERENCES
+        Start-Process -NoNewWindow -Wait -FilePath "D:\a\NwPluginAPI\DepotDownloader\DepotDownloader.exe" -WorkingDirectory "D:\a\NwPluginAPI\DepotDownloader" -ArgumentList '-app 996560','-dir D:\a\NwPluginAPI\SCPSL_REFERENCES','-filelist "${{ github.workspace }}\download-files.txt"'
+        
+    - name: Restore NuGet packages
+      run: dotnet restore
+      
+    - name: Build project
+      run: dotnet build --no-restore --configuration Release
+      
+    - name: Run tests
+      run: dotnet test --no-build --verbosity normal
+      
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with: 
+        name: PluginCommands
+        path: ${{ github.workspace }}/PluginCommands/bin/Release/net48/PluginCommands.dll
