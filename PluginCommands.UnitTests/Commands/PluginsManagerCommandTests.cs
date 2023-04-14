@@ -7,6 +7,7 @@ using FluentAssertions;
 using System.Collections.Generic;
 using PluginAPI.Loader;
 using GameCore;
+using System.Runtime.CompilerServices;
 using PluginAPI.Core;
 using PluginAPI.Loader.Features;
 using System.Reflection;
@@ -71,7 +72,10 @@ namespace PluginCommands.UnitTests.Commands
             {
                 _ = ConfigFile.ServerConfig;
             }
-            catch (Exception) {}
+            catch (Exception)
+            {
+                RuntimeHelpers.RunClassConstructor(typeof(ConfigFile).TypeHandle);
+            }
 
             var plugins = new Dictionary<Type, PluginHandler>();
 
