@@ -9,11 +9,15 @@ namespace PluginCommands
     /// </summary>
     public class Plugin
     {
+        public const string PluginVersion = "2.0.0";
+        public const string PluginDescription = "Commands for plugins management at runtime.";
+        public const string PluginAuthor = "Adam Szerszenowicz";
+
         /// <summary>
         /// Loads and initializes the plugin.
         /// </summary>
         [PluginPriority(LoadPriority.Highest)]
-        [PluginEntryPoint("Plugin Commands", "1.1.2", "Commands for plugins management at runtime", "Adam Szerszenowicz")]
+        [PluginEntryPoint("Plugin Commands", PluginVersion, PluginDescription, PluginAuthor)]
         void LoadPlugin()
         {
             Log.Info("Plugin is loaded.", "PluginCommands: ");

@@ -30,11 +30,3 @@ Commands from this plugin can be accessed from remote admin or server console.
 | load    | [Plugin Name] | enable on     | Loads an installed plugin.   | ServerConsoleCommands |
 | reload  | [Plugin Name] | refresh reset | Reloads an installed plugin. | ServerConsoleCommands |
 | unload  | [Plugin Name] | disable off   | Unloads an installed plugin. | ServerConsoleCommands |
-
-## Additional build dependencies
-The following SCP:SL assemblies must be referenced when building the project:
-- `Assembly-CSharp.dll`
-- `CommandSystem.Core.dll`
-- `Mirror.dll` (required only for unit tests project)
-- `NorthwoodLib.dll` (required only for unit tests project)
-- `UnityEngine.CoreModule.dll` (required only for unit tests project)
