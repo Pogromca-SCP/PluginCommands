@@ -66,7 +66,13 @@ namespace PluginCommands.UnitTests.Commands
         public static void InstallTestPlugins(IEnumerable<object> pluginsToInstall)
         {
             AssemblyLoader.Plugins.Clear();
-            _ = ConfigFile.ServerConfig;
+
+            try
+            {
+                _ = ConfigFile.ServerConfig;
+            }
+            catch (Exception) {}
+
             var plugins = new Dictionary<Type, PluginHandler>();
 
             foreach (var pl in pluginsToInstall)
