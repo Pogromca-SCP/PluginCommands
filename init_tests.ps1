@@ -14,4 +14,6 @@ Start-Sleep -s 2
 $pr.StandardInput.WriteLine("global")
 Start-Sleep -s 60
 $pr.StandardInput.WriteLine("exit")
-Start-Sleep -s 120
+Start-Sleep -s 10
+dotnet test --no-build --verbosity normal
+Start-Sleep -s 300
