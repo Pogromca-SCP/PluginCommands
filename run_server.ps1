@@ -8,5 +8,7 @@ $psi.RedirectStandardInput = $true
 $pr = [System.Diagnostics.Process]::Start($psi)
 Start-Sleep -s 5
 $pr.StandardInput.WriteLine("yes")
+Start-Sleep -s 2
+$pr.StandardInput.WriteLine("keep")
 Start-Sleep -s 30
 $pr.StandardInput.WriteLine("exit")
