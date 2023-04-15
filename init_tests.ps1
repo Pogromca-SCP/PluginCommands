@@ -15,11 +15,10 @@ $pr.StandardInput.WriteLine("global")
 Start-Sleep -s 60
 $pr.StandardInput.WriteLine("exit")
 Start-Sleep -s 10
-dotnet test --no-build --verbosity normal
 
-if ( !$? ) {
+for ($i = 0; $i -lt 2; $i++) {
+    dotnet test --no-build --verbosity normal
     Start-Sleep -s 600
-    Exit 0
 }
 
-Start-Sleep -s 600
+Exit 0
