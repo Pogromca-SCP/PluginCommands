@@ -18,8 +18,8 @@ Start-Sleep -s 10
 dotnet test --no-build --verbosity normal
 
 if ( !$? ) {
-    Start-Sleep -s 300
+    Start-Sleep -s 600
     Exit 0
 }
 
-Start-Sleep -s 300
+Start-Sleep -s 600
