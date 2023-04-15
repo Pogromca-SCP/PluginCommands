@@ -37,6 +37,11 @@ jobs:
     - name: Build project
       run: dotnet build --no-restore --configuration Release
       
+    - name: Prepare for tests
+      shell: pwsh
+      run: |
+        ${{ github.workspace }}/run_server.ps1
+      
     - name: Run unit tests
       run: dotnet test --no-build --verbosity normal
       
