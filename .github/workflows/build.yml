@@ -40,7 +40,7 @@ jobs:
     - name: Prepare for tests
       shell: pwsh
       run: |
-        ${{ github.workspace }}/run_server.ps1
+        ${{ github.workspace }}/init_tests.ps1
       
     - name: Run unit tests
       run: dotnet test --no-build --verbosity normal
