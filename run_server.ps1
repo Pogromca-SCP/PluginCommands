@@ -12,5 +12,6 @@ Start-Sleep -s 2
 $pr.StandardInput.WriteLine("keep")
 Start-Sleep -s 2
 $pr.StandardInput.WriteLine("global")
-Start-Sleep -s 30
+Start-Sleep -s 60
 $pr.StandardInput.WriteLine("exit")
+Start-Sleep -s 120
