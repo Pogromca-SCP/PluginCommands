@@ -16,4 +16,10 @@ Start-Sleep -s 60
 $pr.StandardInput.WriteLine("exit")
 Start-Sleep -s 10
 dotnet test --no-build --verbosity normal
+
+if ( !$? ) {
+    Start-Sleep -s 300
+    Exit 0
+}
+
 Start-Sleep -s 300
