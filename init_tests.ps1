@@ -18,7 +18,7 @@ Start-Sleep -s 10
 
 for ($i = 0; $i -lt 3; $i++) {
     dotnet test --no-build --verbosity normal
-    Start-Sleep -s 600
+    Start-Sleep -s 10
 }
 
 Exit 0
