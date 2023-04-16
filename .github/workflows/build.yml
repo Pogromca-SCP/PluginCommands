@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   DEPOT_DOWNLOADER_VERSION: 2.4.7 
-  SL_REFERENCES: D:/a/NwPluginAPI/SCPSL_REFERENCES/SCPSL_Data/Managed
+  SL_REFERENCES: D:/a/PlCommands/SCPSL_REFERENCES/SCPSL_Data/Managed
 
 jobs:
   build:
@@ -20,16 +20,16 @@ jobs:
     - name: Download depot downloader
       shell: pwsh
       run: |
-        New-Item -ItemType Directory -Force -Path D:/a/NwPluginAPI
-        New-Item -ItemType Directory -Force -Path D:/a/NwPluginAPI/DepotDownloader
-        Invoke-WebRequest -Uri "https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_${{ env.DEPOT_DOWNLOADER_VERSION }}/depotdownloader-${{ env.DEPOT_DOWNLOADER_VERSION }}.zip" -OutFile "D:/a/NwPluginAPI/depotdownloader.zip"
-        Expand-Archive -Path D:/a/NwPluginAPI/depotdownloader.zip -PassThru -DestinationPath D:/a/NwPluginAPI/DepotDownloader
+        New-Item -ItemType Directory -Force -Path D:/a/PlCommands
+        New-Item -ItemType Directory -Force -Path D:/a/PlCommands/DepotDownloader
+        Invoke-WebRequest -Uri "https://github.com/SteamRE/DepotDownloader/releases/download/DepotDownloader_${{ env.DEPOT_DOWNLOADER_VERSION }}/depotdownloader-${{ env.DEPOT_DOWNLOADER_VERSION }}.zip" -OutFile "D:/a/PlCommands/depotdownloader.zip"
+        Expand-Archive -Path D:/a/PlCommands/depotdownloader.zip -PassThru -DestinationPath D:/a/PlCommands/DepotDownloader
         
     - name: Download SCP:SL references
       shell: pwsh
       run: |
-        New-Item -ItemType Directory -Force -Path D:/a/NwPluginAPI/SCPSL_REFERENCES
-        Start-Process -NoNewWindow -Wait -FilePath "D:/a/NwPluginAPI/DepotDownloader/DepotDownloader.exe" -WorkingDirectory "D:/a/NwPluginAPI/DepotDownloader" -ArgumentList '-app 996560','-dir D:/a/NwPluginAPI/SCPSL_REFERENCES','-filelist "${{ github.workspace }}/download-files.txt"'
+        New-Item -ItemType Directory -Force -Path D:/a/PlCommands/SCPSL_REFERENCES
+        Start-Process -NoNewWindow -Wait -FilePath "D:/a/PlCommands/DepotDownloader/DepotDownloader.exe" -WorkingDirectory "D:/a/PlCommands/DepotDownloader" -ArgumentList '-app 996560','-dir D:/a/PlCommands/SCPSL_REFERENCES'
         
     - name: Restore NuGet packages
       run: dotnet restore
