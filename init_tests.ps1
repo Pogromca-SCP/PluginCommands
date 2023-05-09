@@ -21,4 +21,4 @@ for ($i = 0; $i -lt 3; $i++) {
     Start-Sleep -s 10
 }
 
-Exit 0
+exit 0

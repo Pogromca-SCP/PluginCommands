@@ -159,7 +159,7 @@ namespace PluginCommands.UnitTests.Commands
 
             // Assert
             result.Should().BeTrue();
-            response.Should().Be("Currently installed plugins:\n - TestPlugin <color=grey>v1.0.0</color> <color=orange>@Test</color>\r\n");
+            response.Should().Be("Currently installed plugins:\n - TestPlugin <color=#808080ff>v1.0.0</color> <color=orange>@Test</color>\r\n");
             senderMock.VerifyAll();
             senderMock.VerifyNoOtherCalls();
         }

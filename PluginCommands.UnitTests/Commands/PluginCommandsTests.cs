@@ -50,7 +50,7 @@ namespace PluginCommands.UnitTests.Commands
 
             // Assert
             result.Should().BeFalse();
-            response.Should().Be("Please specify a valid argument\nUsage: [Plugin Name] ");
+            response.Should().Be("Please specify a valid argument.\nUsage: [Plugin Name] ");
             senderMock.VerifyAll();
             senderMock.VerifyNoOtherCalls();
         }

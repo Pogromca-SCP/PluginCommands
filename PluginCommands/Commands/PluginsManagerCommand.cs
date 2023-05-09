@@ -96,7 +96,7 @@ namespace PluginCommands.Commands
             foreach (var plugin in AssemblyLoader.InstalledPlugins)
             {
                 sb.AppendLine(isConsole ? $" - {plugin.PluginName} v{plugin.PluginVersion} @{plugin.PluginAuthor}" :
-                    $" - {plugin.PluginName} <color=grey>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
+                    $" - {plugin.PluginName} <color=#808080ff>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
             }
 
             response = sb.ToString();
@@ -132,7 +132,7 @@ namespace PluginCommands.Commands
 
             if (arguments.Count < 1)
             {
-                response = $"Please specify a valid argument\nUsage: {this.DisplayCommandUsage()}";
+                response = $"Please specify a valid argument.\nUsage: {this.DisplayCommandUsage()}";
                 return false;
             }
 
