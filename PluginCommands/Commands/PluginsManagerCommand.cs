@@ -24,7 +24,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// </summary>
     /// <param name="sender">Sender to verify.</param>
     /// <returns>Error message if sender does not have permissions or <see langword="null"/> otherwise.</returns>
-    public static string? CheckPluginsManagementPerms(ICommandSender? sender)
+    public static string CheckPluginsManagementPerms(ICommandSender sender)
     {
         if (sender is null)
         {
@@ -81,7 +81,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <param name="sender">Command sender.</param>
     /// <param name="response">Response to display in sender's console.</param>
     /// <returns><see langword="true"/> if command executed successfully, <see langword="false"/> otherwise.</returns>
-    protected override bool ExecuteParent(ArraySegment<string?> arguments, ICommandSender? sender, out string? response)
+    protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
         response = CheckPluginsManagementPerms(sender);
 
@@ -121,7 +121,7 @@ public abstract class PluginCommandBase : IUsageProvider
     /// <param name="sender">Command sender.</param>
     /// <param name="response">Response to display in sender's console.</param>
     /// <returns><see langword="true"/> if command executed successfully, <see langword="false"/> otherwise.</returns>
-    public bool Execute(ArraySegment<string?> arguments, ICommandSender? sender, out string? response)
+    public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
     {
         response = PluginsManagerCommand.CheckPluginsManagementPerms(sender);
 

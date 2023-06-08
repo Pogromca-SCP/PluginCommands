@@ -7,7 +7,6 @@
 		<AssemblyName>PluginCommands</AssemblyName>
 		<RootNamespace>PluginCommands</RootNamespace>
 		<LangVersion>10</LangVersion>
-		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
 		<Configurations>Release</Configurations>
 		<Platforms>AnyCPU</Platforms>

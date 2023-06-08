@@ -7,7 +7,6 @@
 		<AssemblyName>PluginCommands.UnitTests</AssemblyName>
 		<RootNamespace>PluginCommands.UnitTests</RootNamespace>
 		<LangVersion>10</LangVersion>
-		<Nullable>enable</Nullable>
 		<Configurations>Release</Configurations>
 		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
