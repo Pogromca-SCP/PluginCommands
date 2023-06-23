@@ -17,7 +17,7 @@ $pr.StandardInput.WriteLine("exit")
 Start-Sleep -s 10
 
 for ($i = 0; $i -lt 3; $i++) {
-    dotnet test --no-build --verbosity normal
+    dotnet test --no-build
     Start-Sleep -s 10
 }
 
