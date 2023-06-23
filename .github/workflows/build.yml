@@ -3,7 +3,7 @@ name: Build Plugin Commands
 on: [push, pull_request]
 
 env:
-  DEPOT_DOWNLOADER_VERSION: 2.4.7 
+  DEPOT_DOWNLOADER_VERSION: 2.5.0
   SL_REFERENCES: D:/a/PlCommands/SCPSL_REFERENCES/SCPSL_Data/Managed
 
 jobs:
