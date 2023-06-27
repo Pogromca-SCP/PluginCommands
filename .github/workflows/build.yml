@@ -1,6 +1,10 @@
 name: Build Plugin Commands
 
-on: [push, pull_request]
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
 
 env:
   DEPOT_DOWNLOADER_VERSION: 2.5.0
