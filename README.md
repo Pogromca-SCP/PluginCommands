@@ -21,9 +21,9 @@ This plugin was created using [official Northwood Plugin API](https://github.com
 
 ## Commands
 Commands from this plugin can be accessed from remote admin or server console.
-| Command                              | Usage                              | Aliases           | Description                                | Required permissions  |
-| ------------------------------------ | ---------------------------------- | ----------------- | ------------------------------------------ | --------------------- |
-| plugincommands <a name="plcmds"></a> | [load/reload/unload] [Plugin Name] | plcommands plcmds | Provides subcommands for plugins management at runtime and displays the list of installed plugins. | ServerConsoleCommands |
+| Command                              | Usage                              | Aliases           | Description                                                                                                                        | Required permissions  |
+| ------------------------------------ | ---------------------------------- | ----------------- | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| plugincommands <a name="plcmds"></a> | [load/reload/unload] [Plugin Name] | plcommands plcmds | Provides subcommands for plugins management at runtime. Displays the list of installed plugins if no valid subcommand is selected. | ServerConsoleCommands |
 
 ### [`plugincommands`](#plcmds) subcommands
 | Command | Usage         | Aliases       | Description                  | Required permissions  |

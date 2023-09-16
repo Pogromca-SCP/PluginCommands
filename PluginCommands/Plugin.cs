@@ -9,8 +9,8 @@ namespace PluginCommands;
 /// </summary>
 public class Plugin
 {
-    public const string PluginVersion = "2.2.0";
-    public const string PluginDescription = "Commands for plugins management at runtime.";
+    public const string PluginVersion = "3.0.0";
+    public const string PluginDescription = "Provides commands for NwPluginAPI based plugins management at runtime.";
     public const string PluginAuthor = "Adam Szerszenowicz";
 
     /// <summary>

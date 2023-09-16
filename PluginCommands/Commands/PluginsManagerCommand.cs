@@ -50,7 +50,8 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <summary>
     /// Contains command description.
     /// </summary>
-    public override string Description { get; } = "Provides subcommands for plugins management at runtime and displays the list of installed plugins.";
+    public override string Description { get; } =
+        "Provides subcommands for plugins management at runtime. Displays the list of installed plugins if no valid subcommand is selected.";
 
     /// <summary>
     /// Defines command usage prompts.
