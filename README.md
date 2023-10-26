@@ -16,7 +16,7 @@ This plugin was created using [official Northwood Plugin API](https://github.com
 
 ### Manual
 1. Download `PluginCommands.dll` file from [latest release](https://github.com/Pogromca-SCP/PluginCommands/releases/latest).
-2. Place downloaded file in your server's plugins folder `{SecretLabDirectory}/PluginAPI/plugins/{port|global}`.
+2. Place downloaded file in your server's plugins folder `{ServerDirectory}/PluginAPI/plugins/{port|global}`.
 3. Restart the server.
 
 ## Commands
