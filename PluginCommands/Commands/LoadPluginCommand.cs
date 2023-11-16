@@ -16,7 +16,7 @@ public class LoadPluginCommand : PluginCommandBase, ICommand
     /// <summary>
     /// Defines command aliases.
     /// </summary>
-    public string[] Aliases { get; } = new[] { "enable", "on" };
+    public string[] Aliases { get; } = ["enable", "on"];
 
     /// <summary>
     /// Contains command description.

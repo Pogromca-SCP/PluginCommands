@@ -16,7 +16,7 @@ public class UnloadPluginCommand : PluginCommandBase, ICommand
     /// <summary>
     /// Defines command aliases.
     /// </summary>
-    public string[] Aliases { get; } = new[] { "disable", "off" };
+    public string[] Aliases { get; } = ["disable", "off"];
 
     /// <summary>
     /// Contains command description.

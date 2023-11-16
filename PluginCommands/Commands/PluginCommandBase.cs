@@ -1,8 +1,8 @@
 ﻿using CommandSystem;
-using System;
-using PluginAPI.Loader;
-using System.Linq;
 using PluginAPI.Core;
+using PluginAPI.Loader;
+using System;
+using System.Linq;
 
 namespace PluginCommands.Commands;
 
@@ -14,7 +14,7 @@ public abstract class PluginCommandBase : IUsageProvider
     /// <summary>
     /// Defines command usage prompts.
     /// </summary>
-    public string[] Usage { get; } = new[] { "Plugin Name" };
+    public string[] Usage { get; } = ["Plugin Name"];
 
     /// <summary>
     /// Executes the command.

@@ -1,6 +1,6 @@
-﻿using PluginAPI.Core.Attributes;
+﻿using PluginAPI.Core;
+using PluginAPI.Core.Attributes;
 using PluginAPI.Enums;
-using PluginAPI.Core;
 
 namespace PluginCommands;
 

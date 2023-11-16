@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<AssemblyName>PluginCommands</AssemblyName>
 		<RootNamespace>PluginCommands</RootNamespace>
-		<LangVersion>10</LangVersion>
+		<LangVersion>12</LangVersion>
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
 		<Configurations>Release</Configurations>
 		<Platforms>AnyCPU</Platforms>

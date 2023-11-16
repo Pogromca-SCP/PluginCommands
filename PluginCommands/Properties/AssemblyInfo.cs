@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using PluginCommands;
+﻿using PluginCommands;
+using System.Reflection;
 
 [assembly: AssemblyTitle("PluginCommands")]
 [assembly: AssemblyDescription(Plugin.PluginDescription)]

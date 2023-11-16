@@ -1,7 +1,7 @@
 ﻿using CommandSystem;
-using System;
 using NorthwoodLib.Pools;
 using PluginAPI.Loader;
+using System;
 
 namespace PluginCommands.Commands;
 
@@ -45,7 +45,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <summary>
     /// Defines command aliases.
     /// </summary>
-    public override string[] Aliases { get; } = new[] { "plcommands", "plcmds" };
+    public override string[] Aliases { get; } = ["plcommands", "plcmds"];
 
     /// <summary>
     /// Contains command description.
@@ -56,7 +56,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <summary>
     /// Defines command usage prompts.
     /// </summary>
-    public string[] Usage { get; } = new[] { "load/reload/unload",  "Plugin Name" };
+    public string[] Usage { get; } = ["load/reload/unload",  "Plugin Name"];
 
     /// <summary>
     /// Initializes the command.

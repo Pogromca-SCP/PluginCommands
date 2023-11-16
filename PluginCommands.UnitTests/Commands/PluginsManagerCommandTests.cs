@@ -1,16 +1,16 @@
-﻿using NUnit.Framework;
-using System;
-using Moq;
-using PluginCommands.Commands;
-using CommandSystem;
+﻿using CommandSystem;
 using FluentAssertions;
-using System.Collections.Generic;
-using PluginAPI.Loader;
+using Moq;
+using NUnit.Framework;
 using PluginAPI.Core;
-using PluginAPI.Loader.Features;
-using System.Reflection;
-using System.Linq;
 using PluginAPI.Core.Attributes;
+using PluginAPI.Loader;
+using PluginAPI.Loader.Features;
+using PluginCommands.Commands;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 
 namespace PluginCommands.UnitTests.Commands;
 

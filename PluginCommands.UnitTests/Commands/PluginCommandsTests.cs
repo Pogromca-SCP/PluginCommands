@@ -1,11 +1,11 @@
-﻿using NUnit.Framework;
-using CommandSystem;
+﻿using CommandSystem;
+using FluentAssertions;
+using NUnit.Framework;
+using PluginAPI.Core.Attributes;
 using PluginCommands.Commands;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using FluentAssertions;
-using PluginAPI.Core.Attributes;
 
 namespace PluginCommands.UnitTests.Commands;
 
@@ -13,13 +13,13 @@ namespace PluginCommands.UnitTests.Commands;
 public class PluginCommandsTests
 {
     #region Tests Static Utils
-    private static readonly object[] _plugins = new object[] { new TPlugin(), new TtPlugin(), new ExamplePlugin() };
+    private static readonly object[] _plugins = [new TPlugin(), new TtPlugin(), new ExamplePlugin()];
 
-    private static readonly ICommand[] _testedCommands = new ICommand[] { new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand() };
+    private static readonly ICommand[] _testedCommands = [new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand()];
 
-    private static readonly string[] _invalidPluginNames = new[] { "", "test", "test test" };
+    private static readonly string[] _invalidPluginNames = ["", "test", "test test"];
 
-    private static readonly string[] _validPluginNames = new[] { "TPlugin", "T Plugin", "Example Plugin" };
+    private static readonly string[] _validPluginNames = ["TPlugin", "T Plugin", "Example Plugin"];
 
     private static IEnumerable<object[]> InvalidPluginTestCases => MergeCommandsAndPlugins(_testedCommands, _invalidPluginNames);
 

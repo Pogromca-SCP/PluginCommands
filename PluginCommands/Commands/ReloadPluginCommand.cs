@@ -16,7 +16,7 @@ public class ReloadPluginCommand : PluginCommandBase, ICommand
     /// <summary>
     /// Defines command aliases.
     /// </summary>
-    public string[] Aliases { get; } = new[] { "refresh", "reset" };
+    public string[] Aliases { get; } = ["refresh", "reset"];
 
     /// <summary>
     /// Contains command description.
