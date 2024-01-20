@@ -31,3 +31,26 @@ Commands from this plugin can be accessed from remote admin or server console.
 | load    | [Plugin Name] | enable on     | Loads an installed plugin.   | ServerConsoleCommands |
 | reload  | [Plugin Name] | refresh reset | Reloads an installed plugin. | ServerConsoleCommands |
 | unload  | [Plugin Name] | disable off   | Unloads an installed plugin. | ServerConsoleCommands |
+
+## Plugin integration
+In order to make your own plugin work properly with commands you need to implement methods with `PluginEntryPoint` and `PluginUnload` attributes (example provided below). Never assume what is the state of your plugin when these methods are called! Your implementations should be able to handle every possible scenario.
+```csharp
+using PluginAPI.Core.Attributes;
+
+class ExamplePlugin
+{
+    [PluginEntryPoint("Plugin name", "1.0.0", "Plugin description", "Plugin author")]
+    void LoadPlugin()
+    {
+        // Initialize plugin here.
+        // NOTE: Your plugin can be already loaded when this method is called.
+    }
+
+    [PluginUnload]
+    void UnloadPlugin()
+    {
+        // Cleanup plugin resources here.
+        // NOTE: Your plugin can be already unloaded when this method is called.
+    }
+}
+```
