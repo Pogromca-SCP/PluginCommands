@@ -18,7 +18,7 @@ jobs:
         dotnet-version: 8.0.x
         
     - name: Build, test and upload artifacts
-      uses: Pogromca-SCP/build-nwapi-plugin@v1.0.1
+      uses: Pogromca-SCP/build-nwapi-plugin@v1
       with:
         plugin-name: PluginCommands
         refs-variable: SL_REFERENCES
