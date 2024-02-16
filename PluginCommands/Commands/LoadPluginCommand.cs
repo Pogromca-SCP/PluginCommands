@@ -23,12 +23,6 @@ public class LoadPluginCommand : PluginCommandBase, ICommand
     /// </summary>
     public string Description { get; } = "Loads an installed plugin.";
 
-    /// <summary>
-    /// Handles the plugin command functionality.
-    /// </summary>
-    /// <param name="plugin">Found plugin.</param>
-    /// <param name="isConsole">Tells whether or not the command is executed by server console.</param>
-    /// <returns>Response to display in sender's console.</returns>
     protected override string HandlePluginCommand(PluginHandler plugin, bool isConsole)
     {
         plugin.Load();
