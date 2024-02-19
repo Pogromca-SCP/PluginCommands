@@ -43,14 +43,14 @@ class ExamplePlugin
     void LoadPlugin()
     {
         // Initialize plugin here.
-        // NOTE: Your plugin can be already loaded when this method is called.
+        // NOTE: Your plugin may be already loaded when this method is called.
     }
 
     [PluginUnload]
     void UnloadPlugin()
     {
         // Cleanup plugin resources here.
-        // NOTE: Your plugin can be already unloaded when this method is called.
+        // NOTE: Your plugin may be already unloaded when this method is called.
     }
 }
 ```
