@@ -11,15 +11,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
-		.github\workflows\build.yml = .github\workflows\build.yml
 		CHANGELOG.md = CHANGELOG.md
-		.github\dependabot.yml = .github\dependabot.yml
-		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
 		LICENSE = LICENSE
-		.github\pull_request_template.md = .github\pull_request_template.md
 		README.md = README.md
 		SECURITY.md = SECURITY.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Templates", "Templates", "{2C0422DD-18AC-4AC2-B173-F2ECD86B616F}"
+	ProjectSection(SolutionItems) = preProject
+		.github\ISSUE_TEMPLATE\bug_report.md = .github\ISSUE_TEMPLATE\bug_report.md
+		.github\ISSUE_TEMPLATE\feature_request.md = .github\ISSUE_TEMPLATE\feature_request.md
+		.github\pull_request_template.md = .github\pull_request_template.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Automation", "Automation", "{28E0E105-03A6-44E6-95DF-5EE479B90ED6}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\dependabot.yml = .github\dependabot.yml
 		.github\workflows\update_year.yml = .github\workflows\update_year.yml
 	EndProjectSection
 EndProject
@@ -35,6 +43,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2C0422DD-18AC-4AC2-B173-F2ECD86B616F} = {C1C3E0CD-E8CC-4F68-835B-A4414587841F}
+		{28E0E105-03A6-44E6-95DF-5EE479B90ED6} = {C1C3E0CD-E8CC-4F68-835B-A4414587841F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B4CB4F5F-E281-4D97-84BA-A3ED8AA99CED}
