@@ -5,7 +5,6 @@ using NUnit.Framework;
 using PluginAPI.Core;
 using PluginAPI.Core.Attributes;
 using PluginAPI.Loader;
-using PluginAPI.Loader.Features;
 using PluginCommands.Commands;
 using System;
 using System.Collections.Generic;
@@ -24,7 +23,7 @@ public class PluginsManagerCommandTests
     #endregion
 
     #region Tests Static Utils
-    private static readonly Type[] _emptyTypesArray = new Type[0];
+    private static readonly Type[] _emptyTypesArray = [];
 
     public static Mock<CommandSender> GetInvalidSender() => GetSender(0uL);
 
@@ -33,7 +32,7 @@ public class PluginsManagerCommandTests
     public static void TestCommand_WithNullSender(ICommand command)
     {
         // Act
-        var result = command.Execute(new ArraySegment<string>(), null, out var response);
+        var result = command.Execute(new(), null, out var response);
 
         // Assert
         result.Should().BeFalse();
@@ -46,7 +45,7 @@ public class PluginsManagerCommandTests
         var senderMock = GetInvalidSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(), senderMock.Object, out var response);
+        var result = command.Execute(new(), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeFalse();
@@ -70,7 +69,7 @@ public class PluginsManagerCommandTests
         foreach (var pl in pluginsToInstall)
         {
             var pluginType = pl.GetType();
-            plugins.Add(pluginType, new PluginHandler(new PluginDirectory("./"), pl, pluginType, _emptyTypesArray));
+            plugins.Add(pluginType, new(new("./"), pl, pluginType, _emptyTypesArray));
         }
 
         AssemblyLoader.Plugins.Add(Assembly.GetExecutingAssembly(), plugins);
@@ -86,7 +85,7 @@ public class PluginsManagerCommandTests
     #endregion
 
     [OneTimeSetUp]
-    public void OneTimeSetUp() => InstallTestPlugins(new[] { new TestPlugin() });
+    public void OneTimeSetUp() => InstallTestPlugins([new TestPlugin()]);
 
     #region CheckPluginsManagementPerms Tests
     [Test]
@@ -99,8 +98,7 @@ public class PluginsManagerCommandTests
         result.Should().Be(NullSenderMessage);
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[Test]
+    [Test]
     public void CheckPluginsManagementPerms_ShouldReturnProperMessage_WhenCommandSenderHasMissingPermissions()
     {
         // Arrange
@@ -115,8 +113,7 @@ public class PluginsManagerCommandTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[Test]
+    [Test]
     public void CheckPluginsManagementPerms_ShouldReturnNull_WhenCommandSenderHasRequiredPermissions()
     {
         // Arrange
@@ -146,12 +143,10 @@ public class PluginsManagerCommandTests
     [Test]
     public void ExecuteParent_ShouldFail_WhenCommandSenderIsNull() => TestCommand_WithNullSender(new PluginsManagerCommand());
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[Test]
+    [Test]
     public void ExecuteParent_ShouldFail_WhenCommandSenderHasMissingPermissions() => TestCommand_WithInvalidSender(new PluginsManagerCommand());
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[Test]
+    [Test]
     public void ExecuteParent_ShouldSucceed_WhenGoldFlowInGame()
     {
         // Arrange
@@ -159,7 +154,7 @@ public class PluginsManagerCommandTests
         var senderMock = GetValidSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(), senderMock.Object, out var response);
+        var result = command.Execute(new(), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeTrue();
@@ -168,8 +163,7 @@ public class PluginsManagerCommandTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[Test]
+    [Test]
     public void ExecuteParent_ShouldSucceed_WhenGoldFlowInConsole()
     {
         // Arrange
@@ -177,7 +171,7 @@ public class PluginsManagerCommandTests
         var senderMock = GetConsoleSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(), senderMock.Object, out var response);
+        var result = command.Execute(new(), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeTrue();

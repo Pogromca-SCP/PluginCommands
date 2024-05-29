@@ -3,7 +3,6 @@ using FluentAssertions;
 using NUnit.Framework;
 using PluginAPI.Core.Attributes;
 using PluginCommands.Commands;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -26,7 +25,7 @@ public class PluginCommandsTests
     private static IEnumerable<object[]> ValidPluginTestCases => MergeCommandsAndPlugins(_testedCommands, _validPluginNames);
 
     private static IEnumerable<object[]> MergeCommandsAndPlugins(ICommand[] commands, string[] plugins) =>
-        commands.SelectMany(c => plugins.Select(p => new object[] { c, p }));
+        commands.SelectMany(c => plugins.Select<string, object[]>(p => [c, p]));
     #endregion
 
     [OneTimeSetUp]
@@ -36,19 +35,17 @@ public class PluginCommandsTests
     [TestCaseSource(nameof(_testedCommands))]
     public void Execute_ShouldFail_WhenCommandSenderIsNull(ICommand command) => PluginsManagerCommandTests.TestCommand_WithNullSender(command);
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(_testedCommands))]
+    [TestCaseSource(nameof(_testedCommands))]
     public void Execute_ShouldFail_WhenCommandSenderHasMissingPermissions(ICommand command) => PluginsManagerCommandTests.TestCommand_WithInvalidSender(command);
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(_testedCommands))]
+    [TestCaseSource(nameof(_testedCommands))]
     public void Execute_ShouldFail_WhenNoArgumentsWereProvided(ICommand command)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetValidSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(), senderMock.Object, out var response);
+        var result = command.Execute(new(), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeFalse();
@@ -57,15 +54,14 @@ public class PluginCommandsTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(InvalidPluginTestCases))]
+    [TestCaseSource(nameof(InvalidPluginTestCases))]
     public void Execute_ShouldFail_WhenPluginDoesNotExist_InGame(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetValidSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(pluginName.Split(' ')), senderMock.Object, out var response);
+        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeFalse();
@@ -74,15 +70,14 @@ public class PluginCommandsTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(InvalidPluginTestCases))]
+    [TestCaseSource(nameof(InvalidPluginTestCases))]
     public void Execute_ShouldFail_WhenPluginDoesNotExist_InConsole(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetConsoleSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(pluginName.Split(' ')), senderMock.Object, out var response);
+        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeFalse();
@@ -91,15 +86,14 @@ public class PluginCommandsTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(ValidPluginTestCases))]
+    [TestCaseSource(nameof(ValidPluginTestCases))]
     public void Execute_ShouldSucceed_WhenGoldFlowInGame(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetValidSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(pluginName.Split(' ')), senderMock.Object, out var response);
+        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeTrue();
@@ -108,15 +102,14 @@ public class PluginCommandsTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    // Test temporarily disabled due to runtime conflicts.
-    //[TestCaseSource(nameof(ValidPluginTestCases))]
+    [TestCaseSource(nameof(ValidPluginTestCases))]
     public void Execute_ShouldSucceed_WhenGoldFlowInConsole(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetConsoleSender();
 
         // Act
-        var result = command.Execute(new ArraySegment<string>(pluginName.Split(' ')), senderMock.Object, out var response);
+        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
 
         // Assert
         result.Should().BeTrue();
