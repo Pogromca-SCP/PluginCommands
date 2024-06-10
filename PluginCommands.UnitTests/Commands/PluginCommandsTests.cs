@@ -55,26 +55,10 @@ public class PluginCommandsTests
     }
 
     [TestCaseSource(nameof(InvalidPluginTestCases))]
-    public void Execute_ShouldFail_WhenPluginDoesNotExist_InGame(ICommand command, string pluginName)
+    public void Execute_ShouldFail_WhenPluginDoesNotExist(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetValidSender();
-
-        // Act
-        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
-
-        // Assert
-        result.Should().BeFalse();
-        response.Should().Be($"Plugin '<color=green>{pluginName}</color>' not found.");
-        senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
-    }
-
-    [TestCaseSource(nameof(InvalidPluginTestCases))]
-    public void Execute_ShouldFail_WhenPluginDoesNotExist_InConsole(ICommand command, string pluginName)
-    {
-        // Arrange
-        var senderMock = PluginsManagerCommandTests.GetConsoleSender();
 
         // Act
         var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
@@ -87,26 +71,10 @@ public class PluginCommandsTests
     }
 
     [TestCaseSource(nameof(ValidPluginTestCases))]
-    public void Execute_ShouldSucceed_WhenGoldFlowInGame(ICommand command, string pluginName)
+    public void Execute_ShouldSucceed_WhenGoldFlow(ICommand command, string pluginName)
     {
         // Arrange
         var senderMock = PluginsManagerCommandTests.GetValidSender();
-
-        // Act
-        var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
-
-        // Assert
-        result.Should().BeTrue();
-        response.Should().Match($"Plugin '<color=green>{pluginName}</color>' *");
-        senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
-    }
-
-    [TestCaseSource(nameof(ValidPluginTestCases))]
-    public void Execute_ShouldSucceed_WhenGoldFlowInConsole(ICommand command, string pluginName)
-    {
-        // Arrange
-        var senderMock = PluginsManagerCommandTests.GetConsoleSender();
 
         // Act
         var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);

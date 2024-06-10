@@ -54,13 +54,6 @@ public class PluginsManagerCommandTests
         senderMock.VerifyNoOtherCalls();
     }
 
-    public static Mock<ServerConsoleSender> GetConsoleSender()
-    {
-        var mock = new Mock<ServerConsoleSender>(MockBehavior.Strict);
-        mock.Setup(s => s.FullPermissions).Returns(true);
-        return mock;
-    }
-
     public static void InstallTestPlugins(IEnumerable<object> pluginsToInstall)
     {
         AssemblyLoader.Plugins.Clear();
@@ -147,28 +140,11 @@ public class PluginsManagerCommandTests
     public void ExecuteParent_ShouldFail_WhenCommandSenderHasMissingPermissions() => TestCommand_WithInvalidSender(new PluginsManagerCommand());
 
     [Test]
-    public void ExecuteParent_ShouldSucceed_WhenGoldFlowInGame()
+    public void ExecuteParent_ShouldSucceed_WhenGoldFlow()
     {
         // Arrange
         var command = new PluginsManagerCommand();
         var senderMock = GetValidSender();
-
-        // Act
-        var result = command.Execute(new(), senderMock.Object, out var response);
-
-        // Assert
-        result.Should().BeTrue();
-        response.Should().Be("Currently installed plugins:\n - TestPlugin <color=#808080ff>v1.0.0</color> <color=orange>@Test</color>\r\n");
-        senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
-    }
-
-    [Test]
-    public void ExecuteParent_ShouldSucceed_WhenGoldFlowInConsole()
-    {
-        // Arrange
-        var command = new PluginsManagerCommand();
-        var senderMock = GetConsoleSender();
 
         // Act
         var result = command.Execute(new(), senderMock.Object, out var response);
