@@ -54,6 +54,11 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
         "Provides subcommands for plugins management at runtime. Displays the list of installed plugins if no valid subcommand is selected.";
 
     /// <summary>
+    /// Tells whether or not command response should be sanitized.
+    /// </summary>
+    public bool SanitizeResponse => false;
+
+    /// <summary>
     /// Defines command usage prompts.
     /// </summary>
     public string[] Usage { get; } = ["load/reload/unload",  "Plugin Name"];

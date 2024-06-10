@@ -123,17 +123,17 @@ public class PluginCommandsTests
 public class TPlugin
 {
     [PluginEntryPoint("TPlugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    void Load() {}
+    private void Load() {}
 }
 
 public class TtPlugin
 {
     [PluginEntryPoint("T Plugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    void Load() {}
+    private void Load() {}
 }
 
 public class ExamplePlugin
 {
     [PluginEntryPoint("Example Plugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    void Load() {}
+    private void Load() {}
 }

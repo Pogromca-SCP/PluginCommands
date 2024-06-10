@@ -12,6 +12,11 @@ namespace PluginCommands.Commands;
 public abstract class PluginCommandBase : IUsageProvider
 {
     /// <summary>
+    /// Tells whether or not command response should be sanitized.
+    /// </summary>
+    public bool SanitizeResponse => false;
+
+    /// <summary>
     /// Defines command usage prompts.
     /// </summary>
     public string[] Usage { get; } = ["Plugin Name"];

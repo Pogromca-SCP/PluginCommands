@@ -185,5 +185,5 @@ public class PluginsManagerCommandTests
 public class TestPlugin
 {
     [PluginEntryPoint("TestPlugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    void Load() {}
+    private void Load() {}
 }

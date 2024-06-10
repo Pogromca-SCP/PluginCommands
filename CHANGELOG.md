@@ -7,9 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [3.1.0] - 2024-06-10
+
 ### Changed
 
 - Upgraded project to [NwPluginAPI v13.1.2](https://github.com/northwood-studios/NwPluginAPI/releases/tag/13.1.2).
+- Disabled commands response sanitization.
+- Plugin bind now has explicit access modifier.
 
 ## [3.0.0] - 2023-09-16
 

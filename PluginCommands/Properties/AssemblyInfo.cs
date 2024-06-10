@@ -7,3 +7,4 @@ using System.Reflection;
 [assembly: AssemblyCopyright("Copyright © 2023-2024 " + Plugin.PluginAuthor)]
 [assembly: AssemblyVersion(Plugin.PluginVersion)]
 [assembly: AssemblyFileVersion(Plugin.PluginVersion)]
+[assembly: AssemblyInformationalVersion(Plugin.PluginVersion)]
