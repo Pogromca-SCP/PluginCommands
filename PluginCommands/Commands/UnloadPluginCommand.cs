@@ -24,9 +24,9 @@ public class UnloadPluginCommand : PluginCommandBase, ICommand
     public string Description { get; } = "Unloads an installed plugin.";
 
     /// <inheritdoc />
-    protected override string HandlePluginCommand(PluginHandler plugin, bool isConsole)
+    protected override string HandlePluginCommand(PluginHandler plugin)
     {
         plugin.Unload();
-        return isConsole ? $"Plugin '{plugin.PluginName}' unloaded." : $"Plugin '<color=green>{plugin.PluginName}</color>' unloaded.";
+        return $"Plugin '{plugin.PluginName}' unloaded.";
     }
 }

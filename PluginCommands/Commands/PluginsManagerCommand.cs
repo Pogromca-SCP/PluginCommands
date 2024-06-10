@@ -56,7 +56,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <summary>
     /// Tells whether or not command response should be sanitized.
     /// </summary>
-    public bool SanitizeResponse => false;
+    public bool SanitizeResponse => true;
 
     /// <summary>
     /// Defines command usage prompts.
@@ -94,13 +94,11 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
             return false;
         }
 
-        var isConsole = sender is ServerConsoleSender;
         var sb = StringBuilderPool.Shared.Rent("Currently installed plugins:\n");
 
         foreach (var plugin in AssemblyLoader.InstalledPlugins)
         {
-            sb.AppendLine(isConsole ? $" - {plugin.PluginName} v{plugin.PluginVersion} @{plugin.PluginAuthor}" :
-                $" - {plugin.PluginName} <color=#808080ff>v{plugin.PluginVersion}</color> <color=orange>@{plugin.PluginAuthor}</color>");
+            sb.AppendLine($" - {plugin.PluginName} v{plugin.PluginVersion} @{plugin.PluginAuthor}");
         }
 
         response = StringBuilderPool.Shared.ToStringReturn(sb);

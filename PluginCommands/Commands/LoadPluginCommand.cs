@@ -24,9 +24,9 @@ public class LoadPluginCommand : PluginCommandBase, ICommand
     public string Description { get; } = "Loads an installed plugin.";
 
     /// <inheritdoc />
-    protected override string HandlePluginCommand(PluginHandler plugin, bool isConsole)
+    protected override string HandlePluginCommand(PluginHandler plugin)
     {
         plugin.Load();
-        return isConsole ? $"Plugin '{plugin.PluginName}' loaded." : $"Plugin '<color=green>{plugin.PluginName}</color>' loaded.";
+        return $"Plugin '{plugin.PluginName}' loaded.";
     }
 }
