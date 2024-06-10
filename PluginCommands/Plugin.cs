@@ -12,7 +12,7 @@ public class Plugin
     /// <summary>
     /// Contains current plugin version.
     /// </summary>
-    public const string PluginVersion = "3.0.0";
+    public const string PluginVersion = "3.1.0";
 
     /// <summary>
     /// Contains plugin description.
@@ -29,7 +29,7 @@ public class Plugin
     /// </summary>
     [PluginPriority(LoadPriority.Highest)]
     [PluginEntryPoint("Plugin Commands", PluginVersion, PluginDescription, PluginAuthor)]
-    void LoadPlugin()
+    private void LoadPlugin()
     {
         Log.Info("Plugin is loaded.", "PluginCommands: ");
     }

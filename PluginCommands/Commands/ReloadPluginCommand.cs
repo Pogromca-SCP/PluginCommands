@@ -24,10 +24,10 @@ public class ReloadPluginCommand : PluginCommandBase, ICommand
     public string Description { get; } = "Reloads an installed plugin.";
 
     /// <inheritdoc />
-    protected override string HandlePluginCommand(PluginHandler plugin, bool isConsole)
+    protected override string HandlePluginCommand(PluginHandler plugin)
     {
         plugin.Unload();
         plugin.Load();
-        return isConsole ? $"Plugin '{plugin.PluginName}' reloaded." : $"Plugin '<color=green>{plugin.PluginName}</color>' reloaded.";
+        return $"Plugin '{plugin.PluginName}' reloaded.";
     }
 }

@@ -12,6 +12,11 @@ namespace PluginCommands.Commands;
 public abstract class PluginCommandBase : IUsageProvider
 {
     /// <summary>
+    /// Tells whether or not command response should be sanitized.
+    /// </summary>
+    public bool SanitizeResponse => true;
+
+    /// <summary>
     /// Defines command usage prompts.
     /// </summary>
     public string[] Usage { get; } = ["Plugin Name"];
@@ -38,17 +43,16 @@ public abstract class PluginCommandBase : IUsageProvider
             return false;
         }
 
-        var isConsole = sender is ServerConsoleSender;
         var pluginName = string.Join(" ", arguments);
         var plugin = AssemblyLoader.InstalledPlugins.FirstOrDefault(p => p.PluginName.Equals(pluginName));
 
         if (plugin is null)
         {
-            response = isConsole ? $"Plugin '{pluginName}' not found." : $"Plugin '<color=green>{pluginName}</color>' not found.";
+            response = $"Plugin '{pluginName}' not found.";
             return false;
         }
 
-        response = HandlePluginCommand(plugin, isConsole);
+        response = HandlePluginCommand(plugin);
         return true;
     }
 
@@ -56,7 +60,6 @@ public abstract class PluginCommandBase : IUsageProvider
     /// Handles the plugin command functionality.
     /// </summary>
     /// <param name="plugin">Found plugin.</param>
-    /// <param name="isConsole">Tells whether or not the command is executed by server console.</param>
     /// <returns>Response to display in sender's console.</returns>
-    protected abstract string HandlePluginCommand(PluginHandler plugin, bool isConsole);
+    protected abstract string HandlePluginCommand(PluginHandler plugin);
 }
