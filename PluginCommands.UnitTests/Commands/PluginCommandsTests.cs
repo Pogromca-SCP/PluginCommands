@@ -11,7 +11,7 @@ namespace PluginCommands.UnitTests.Commands;
 [TestFixture]
 public class PluginCommandsTests
 {
-    #region Tests Static Utils
+    #region Test Case Sources
     private static readonly object[] _plugins = [new TPlugin(), new TtPlugin(), new ExamplePlugin()];
 
     private static readonly ICommand[] _testedCommands = [new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand()];
@@ -29,20 +29,23 @@ public class PluginCommandsTests
     #endregion
 
     [OneTimeSetUp]
-    public void OneTimeSetUp() => PluginsManagerCommandTests.InstallTestPlugins(_plugins);
+    public void OneTimeSetUp() => Shared.InstallTestPlugins(_plugins);
+
+    [OneTimeTearDown]
+    public void OneTimeTearDown() => Shared.UninstallTestPlugins();
 
     #region Execute Tests
     [TestCaseSource(nameof(_testedCommands))]
-    public void Execute_ShouldFail_WhenCommandSenderIsNull(ICommand command) => PluginsManagerCommandTests.TestCommand_WithNullSender(command);
+    public void Execute_ShouldFail_WhenCommandSenderIsNull(ICommand command) => Shared.TestCommand_WithNullSender(command);
 
     [TestCaseSource(nameof(_testedCommands))]
-    public void Execute_ShouldFail_WhenCommandSenderHasMissingPermissions(ICommand command) => PluginsManagerCommandTests.TestCommand_WithInvalidSender(command);
+    public void Execute_ShouldFail_WhenCommandSenderHasMissingPermissions(ICommand command) => Shared.TestCommand_WithInvalidSender(command);
 
     [TestCaseSource(nameof(_testedCommands))]
     public void Execute_ShouldFail_WhenNoArgumentsWereProvided(ICommand command)
     {
         // Arrange
-        var senderMock = PluginsManagerCommandTests.GetValidSender();
+        var senderMock = Shared.GetValidSender();
 
         // Act
         var result = command.Execute(new(), senderMock.Object, out var response);
@@ -58,7 +61,7 @@ public class PluginCommandsTests
     public void Execute_ShouldFail_WhenPluginDoesNotExist(ICommand command, string pluginName)
     {
         // Arrange
-        var senderMock = PluginsManagerCommandTests.GetValidSender();
+        var senderMock = Shared.GetValidSender();
 
         // Act
         var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
@@ -74,7 +77,7 @@ public class PluginCommandsTests
     public void Execute_ShouldSucceed_WhenGoldFlow(ICommand command, string pluginName)
     {
         // Arrange
-        var senderMock = PluginsManagerCommandTests.GetValidSender();
+        var senderMock = Shared.GetValidSender();
 
         // Act
         var result = command.Execute(new(pluginName.Split(' ')), senderMock.Object, out var response);
