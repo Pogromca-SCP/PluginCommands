@@ -1,4 +1,4 @@
-﻿using PluginCommands;
+using PluginCommands;
 using System.Reflection;
 
 [assembly: AssemblyTitle("PluginCommands")]

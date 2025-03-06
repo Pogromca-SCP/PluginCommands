@@ -1,4 +1,4 @@
-﻿using CommandSystem;
+using CommandSystem;
 using FluentAssertions;
 using NUnit.Framework;
 using PluginAPI.Core.Attributes;

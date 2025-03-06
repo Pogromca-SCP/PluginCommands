@@ -1,4 +1,4 @@
-﻿using PluginAPI.Core;
+using PluginAPI.Core;
 using PluginAPI.Core.Attributes;
 using PluginAPI.Enums;
 
