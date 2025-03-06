@@ -1,4 +1,4 @@
-﻿using CommandSystem;
+using CommandSystem;
 using PluginAPI.Core;
 using PluginAPI.Loader;
 using System;

@@ -1,4 +1,4 @@
-﻿using CommandSystem;
+using CommandSystem;
 using NorthwoodLib.Pools;
 using PluginAPI.Loader;
 using System;
