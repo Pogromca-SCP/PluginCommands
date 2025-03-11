@@ -14,7 +14,6 @@
 		<PackageReference Include="FluentAssertions" Version="8.1.1" />
 		<PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.13.0" />
 		<PackageReference Include="Moq" Version="4.20.72" />
-		<PackageReference Include="Northwood.PluginAPI" Version="13.1.2" />
 		<PackageReference Include="NUnit" Version="4.3.2" />
 		<PackageReference Include="NUnit3TestAdapter" Version="5.0.0" />
 	</ItemGroup>
@@ -27,6 +26,7 @@
 		<Reference Include="Mirror" HintPath="$(SL_REFERENCES)/Mirror.dll" />
 		<Reference Include="netstandard" HintPath="$(SL_REFERENCES)/netstandard.dll" />
 		<Reference Include="NorthwoodLib" HintPath="$(SL_REFERENCES)/NorthwoodLib.dll" />
+		<Reference Include="PluginAPI" HintPath="$(SL_REFERENCES)/PluginAPI.dll" />
 		<Reference Include="UnityEngine.CoreModule" HintPath="$(SL_REFERENCES)/UnityEngine.CoreModule.dll" />
 	</ItemGroup>
 </Project>
