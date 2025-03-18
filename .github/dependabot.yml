@@ -4,3 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "nuget"
+    directory: "/"
+    groups:
+      minor-and-patch:
+        update-types:
+          - "minor"
+          - "patch"
+    schedule:
+      interval: "weekly"
