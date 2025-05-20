@@ -1,5 +1,8 @@
 using LabApi.Features;
+using LabApi.Features.Console;
 using LabApi.Loader.Features.Plugins;
+using PluginCommands.Commands;
+using RemoteAdmin;
 using System;
 
 namespace PluginCommands;
@@ -44,8 +47,26 @@ public class PluginCommandsPlugin : Plugin
     /// <inheritdoc />
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
 
+    /// <summary>
+    /// Parent command reference for manual commands registration.
+    /// </summary>
+    private PluginsManagerCommand? _cmd = null;
+
     /// <inheritdoc />
-    public override void Enable() {}
+    public override void Enable()
+    {
+        if (_cmd is not null)
+        {
+            return;
+        }
+
+        Logger.Info("Registering plugin commands...");
+        var cmd = new PluginsManagerCommand();
+        _cmd = cmd;
+        CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(cmd);
+        GameCore.Console.singleton?.ConsoleCommandHandler.RegisterCommand(cmd);
+        Logger.Info("Plugin commands are registered.");
+    }
 
     /// <inheritdoc />
     public override void Disable() {}

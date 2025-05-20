@@ -8,8 +8,6 @@ namespace PluginCommands.Commands;
 /// <summary>
 /// Main command provided by the plugin.
 /// </summary>
-[CommandHandler(typeof(RemoteAdminCommandHandler))]
-[CommandHandler(typeof(GameConsoleCommandHandler))]
 public class PluginsManagerCommand : ParentCommand, IUsageProvider
 {
     /// <summary>
