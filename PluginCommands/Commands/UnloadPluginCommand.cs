@@ -36,6 +36,6 @@ public class UnloadPluginCommand : PluginCommandBase, ICommand
         }
 
         PluginLoader.EnabledPlugins.Remove(plugin);
-        return $"Plugin '{plugin.Name}' is disabled.";
+        return $"Disabled plugin '{plugin.Name}'.";
     }
 }

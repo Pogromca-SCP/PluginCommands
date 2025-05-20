@@ -36,6 +36,6 @@ public class LoadPluginCommand : PluginCommandBase, ICommand
         }
 
         PluginLoader.EnabledPlugins.Add(plugin);
-        return $"Plugin '{plugin.Name}' is enabled.";
+        return $"Enabled plugin '{plugin.Name}'.";
     }
 }

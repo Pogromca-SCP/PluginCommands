@@ -27,6 +27,6 @@ public class ReloadConfigCommand : PluginCommandBase, ICommand
     protected override string HandlePluginCommand(Plugin plugin)
     {
         plugin.LoadConfigs();
-        return $"Plugin configuration for '{plugin.Name}' is reloaded.";
+        return $"Reloaded configuration for '{plugin.Name}'.";
     }
 }

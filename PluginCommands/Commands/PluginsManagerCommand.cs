@@ -97,6 +97,15 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
         {
             sb.Append("- ");
             sb.Append(plugin.ToString());
+            sb.Append(", Status: ");
+
+            sb.Append(plugin.Properties?.IsEnabled switch
+            {
+                true => "Enabled",
+                false => "Disabled",
+                _ => "Unknown",
+            });
+
             sb.Append('\n');
         }
 

@@ -80,7 +80,7 @@ public class PluginsManagerCommandTests
 
         // Assert
         result.Should().BeTrue();
-        response.Should().Be("Currently installed plugins:\n- 'TestPlugin', Version: 1.0.0, Author: 'Test'\n");
+        response.Should().Be("Currently installed plugins:\n- 'TestPlugin', Version: 1.0.0, Author: 'Test', Status: Unknown\n");
         senderMock.VerifyAll();
     }
     #endregion

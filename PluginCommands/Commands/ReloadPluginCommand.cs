@@ -38,6 +38,6 @@ public class ReloadPluginCommand : PluginCommandBase, ICommand
         }
 
         PluginLoader.EnabledPlugins.Add(plugin);
-        return $"Plugin '{plugin.Name}' is reloaded.";
+        return $"Reloaded plugin '{plugin.Name}'.";
     }
 }
