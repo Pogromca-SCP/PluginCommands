@@ -1,6 +1,6 @@
 using CommandSystem;
-using PluginAPI.Core;
-using PluginAPI.Loader;
+using LabApi.Loader;
+using LabApi.Loader.Features.Plugins;
 using System;
 using System.Linq;
 
@@ -28,12 +28,13 @@ public abstract class PluginCommandBase : IUsageProvider
     /// <param name="sender">Command sender.</param>
     /// <param name="response">Response to display in sender's console.</param>
     /// <returns><see langword="true"/> if command executed successfully, <see langword="false"/> otherwise.</returns>
-    public bool Execute(ArraySegment<string> arguments, ICommandSender sender, out string response)
+    public bool Execute(ArraySegment<string?> arguments, ICommandSender? sender, out string response)
     {
-        response = PluginsManagerCommand.CheckPluginsManagementPerms(sender);
+        var problem = PluginsManagerCommand.CheckPluginsManagementPerms(sender);
 
-        if (response is not null)
+        if (problem is not null)
         {
+            response = problem;
             return false;
         }
 
@@ -44,7 +45,7 @@ public abstract class PluginCommandBase : IUsageProvider
         }
 
         var pluginName = string.Join(" ", arguments);
-        var plugin = AssemblyLoader.InstalledPlugins.FirstOrDefault(p => p.PluginName.Equals(pluginName));
+        var plugin = PluginLoader.Plugins.Keys.FirstOrDefault(p => p.Name.Equals(pluginName));
 
         if (plugin is null)
         {
@@ -61,5 +62,5 @@ public abstract class PluginCommandBase : IUsageProvider
     /// </summary>
     /// <param name="plugin">Found plugin.</param>
     /// <returns>Response to display in sender's console.</returns>
-    protected abstract string HandlePluginCommand(PluginHandler plugin);
+    protected abstract string HandlePluginCommand(Plugin plugin);
 }

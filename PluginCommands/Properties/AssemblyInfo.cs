@@ -1,10 +1,10 @@
 using PluginCommands;
 using System.Reflection;
 
-[assembly: AssemblyTitle("PluginCommands")]
-[assembly: AssemblyDescription(Plugin.PluginDescription)]
-[assembly: AssemblyProduct("PluginCommands")]
-[assembly: AssemblyCopyright("Copyright © 2023-present " + Plugin.PluginAuthor)]
-[assembly: AssemblyVersion(Plugin.PluginVersion)]
-[assembly: AssemblyFileVersion(Plugin.PluginVersion)]
-[assembly: AssemblyInformationalVersion(Plugin.PluginVersion)]
+[assembly: AssemblyTitle(PluginCommandsPlugin.PluginName)]
+[assembly: AssemblyDescription(PluginCommandsPlugin.PluginDescription)]
+[assembly: AssemblyProduct(PluginCommandsPlugin.PluginName)]
+[assembly: AssemblyCopyright("Copyright © 2023-present " + PluginCommandsPlugin.PluginAuthor)]
+[assembly: AssemblyVersion(PluginCommandsPlugin.PluginVersion)]
+[assembly: AssemblyFileVersion(PluginCommandsPlugin.PluginVersion)]
+[assembly: AssemblyInformationalVersion(PluginCommandsPlugin.PluginVersion)]

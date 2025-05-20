@@ -1,6 +1,6 @@
 using CommandSystem;
+using LabApi.Loader;
 using NorthwoodLib.Pools;
-using PluginAPI.Loader;
 using System;
 
 namespace PluginCommands.Commands;
@@ -22,7 +22,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// </summary>
     /// <param name="sender">Sender to verify.</param>
     /// <returns>Error message if sender does not have permissions or <see langword="null"/> otherwise.</returns>
-    public static string CheckPluginsManagementPerms(ICommandSender sender)
+    public static string? CheckPluginsManagementPerms(ICommandSender? sender)
     {
         if (sender is null)
         {
@@ -56,7 +56,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <summary>
     /// Defines command usage prompts.
     /// </summary>
-    public string[] Usage { get; } = ["load/reload/unload",  "Plugin Name"];
+    public string[] Usage { get; } = ["load/reload/unload/configreload",  "Plugin Name"];
 
     /// <summary>
     /// Initializes the command.
@@ -71,6 +71,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
         RegisterCommand(new LoadPluginCommand());
         RegisterCommand(new ReloadPluginCommand());
         RegisterCommand(new UnloadPluginCommand());
+        RegisterCommand(new ReloadConfigCommand());
     }
 
     /// <summary>
@@ -80,20 +81,23 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
     /// <param name="sender">Command sender.</param>
     /// <param name="response">Response to display in sender's console.</param>
     /// <returns><see langword="true"/> if command executed successfully, <see langword="false"/> otherwise.</returns>
-    protected override bool ExecuteParent(ArraySegment<string> arguments, ICommandSender sender, out string response)
+    protected override bool ExecuteParent(ArraySegment<string?> arguments, ICommandSender? sender, out string response)
     {
-        response = CheckPluginsManagementPerms(sender);
+        var problem = CheckPluginsManagementPerms(sender);
 
-        if (response is not null)
+        if (problem is not null)
         {
+            response = problem;
             return false;
         }
 
         var sb = StringBuilderPool.Shared.Rent("Currently installed plugins:\n");
 
-        foreach (var plugin in AssemblyLoader.InstalledPlugins)
+        foreach (var plugin in PluginLoader.Plugins.Keys)
         {
-            sb.AppendLine($" - {plugin.PluginName} v{plugin.PluginVersion} @{plugin.PluginAuthor}");
+            sb.Append("- ");
+            sb.Append(plugin.ToString());
+            sb.Append('\n');
         }
 
         response = StringBuilderPool.Shared.ToStringReturn(sb);

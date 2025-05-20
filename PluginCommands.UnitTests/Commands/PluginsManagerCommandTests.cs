@@ -1,6 +1,5 @@
 using FluentAssertions;
 using NUnit.Framework;
-using PluginAPI.Core.Attributes;
 using PluginCommands.Commands;
 
 namespace PluginCommands.UnitTests.Commands;
@@ -8,14 +7,10 @@ namespace PluginCommands.UnitTests.Commands;
 [TestFixture]
 public class PluginsManagerCommandTests
 {
-    private PluginsManagerCommand _command;
+    private readonly PluginsManagerCommand _command = new();
 
     [OneTimeSetUp]
-    public void OneTimeSetUp()
-    {
-        Shared.InstallTestPlugins([new TestPlugin()]);
-        _command = new();
-    }
+    public void OneTimeSetUp() => Shared.InstallTestPlugins([Shared.GetPluginMock("TestPlugin").Object]);
 
     [OneTimeTearDown]
     public void OneTimeTearDown() => Shared.UninstallTestPlugins();
@@ -64,7 +59,7 @@ public class PluginsManagerCommandTests
 
     #region Constructor Tests
     [Test]
-    public void PluginsManagerCommand_ShouldProperlyInitialize() => _command.AllCommands.Should().HaveCount(3);
+    public void PluginsManagerCommand_ShouldProperlyInitialize() => _command.AllCommands.Should().HaveCount(4);
     #endregion
 
     #region ExecuteParent Tests
@@ -85,15 +80,8 @@ public class PluginsManagerCommandTests
 
         // Assert
         result.Should().BeTrue();
-        response.Should().Be("Currently installed plugins:\n - TestPlugin v1.0.0 @Test\r\n");
+        response.Should().Be("Currently installed plugins:\n- 'TestPlugin', Version: 1.0.0, Author: 'Test'\n");
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
     #endregion
-}
-
-public class TestPlugin
-{
-    [PluginEntryPoint("TestPlugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    private void Load() {}
 }

@@ -1,5 +1,6 @@
 using CommandSystem;
-using PluginAPI.Core;
+using LabApi.Loader;
+using LabApi.Loader.Features.Plugins;
 
 namespace PluginCommands.Commands;
 
@@ -21,12 +22,20 @@ public class UnloadPluginCommand : PluginCommandBase, ICommand
     /// <summary>
     /// Contains command description.
     /// </summary>
-    public string Description { get; } = "Unloads an installed plugin.";
+    public string Description { get; } = "Forces an installed plugin to disable itself.";
 
     /// <inheritdoc />
-    protected override string HandlePluginCommand(PluginHandler plugin)
+    protected override string HandlePluginCommand(Plugin plugin)
     {
-        plugin.Unload();
-        return $"Plugin '{plugin.PluginName}' unloaded.";
+        plugin.Disable();
+        var props = plugin.Properties;
+
+        if (props is not null)
+        {
+            props.IsEnabled = false;
+        }
+
+        PluginLoader.EnabledPlugins.Remove(plugin);
+        return $"Plugin '{plugin.Name}' is disabled.";
     }
 }
