@@ -1,5 +1,6 @@
 using CommandSystem;
-using PluginAPI.Core;
+using LabApi.Loader;
+using LabApi.Loader.Features.Plugins;
 
 namespace PluginCommands.Commands;
 
@@ -21,13 +22,22 @@ public class ReloadPluginCommand : PluginCommandBase, ICommand
     /// <summary>
     /// Contains command description.
     /// </summary>
-    public string Description { get; } = "Reloads an installed plugin.";
+    public string Description { get; } = "Forces an installed plugin to restart and reloads its configuration.";
 
     /// <inheritdoc />
-    protected override string HandlePluginCommand(PluginHandler plugin)
+    protected override string HandlePluginCommand(Plugin plugin)
     {
-        plugin.Unload();
-        plugin.Load();
-        return $"Plugin '{plugin.PluginName}' reloaded.";
+        plugin.Disable();
+        plugin.LoadConfigs();
+        plugin.Enable();
+        var props = plugin.Properties;
+
+        if (props is not null)
+        {
+            props.IsEnabled = true;
+        }
+
+        PluginLoader.EnabledPlugins.Add(plugin);
+        return $"Reloaded plugin '{plugin.Name}'.";
     }
 }

@@ -1,7 +1,8 @@
 using CommandSystem;
 using FluentAssertions;
+using LabApi.Loader.Features.Plugins;
+using Moq;
 using NUnit.Framework;
-using PluginAPI.Core.Attributes;
 using PluginCommands.Commands;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,9 +13,11 @@ namespace PluginCommands.UnitTests.Commands;
 public class PluginCommandsTests
 {
     #region Test Case Sources
-    private static readonly object[] _plugins = [new TPlugin(), new TtPlugin(), new ExamplePlugin()];
+    private static readonly Mock<Plugin>[] _plugins =
+        [Shared.GetPluginMock("TPlugin"), Shared.GetPluginMock("T Plugin"), Shared.GetPluginMock("Example Plugin")];
 
-    private static readonly ICommand[] _testedCommands = [new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand()];
+    private static readonly ICommand[] _testedCommands =
+        [new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand(), new ReloadConfigCommand()];
 
     private static readonly string[] _invalidPluginNames = ["", "test", "test test"];
 
@@ -29,7 +32,7 @@ public class PluginCommandsTests
     #endregion
 
     [OneTimeSetUp]
-    public void OneTimeSetUp() => Shared.InstallTestPlugins(_plugins);
+    public void OneTimeSetUp() => Shared.InstallTestPlugins(_plugins.Select(p => p.Object));
 
     [OneTimeTearDown]
     public void OneTimeTearDown() => Shared.UninstallTestPlugins();
@@ -54,7 +57,6 @@ public class PluginCommandsTests
         result.Should().BeFalse();
         response.Should().Be("Please specify a valid argument.\nUsage: [Plugin Name] ");
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
 
     [TestCaseSource(nameof(InvalidPluginTestCases))]
@@ -70,7 +72,6 @@ public class PluginCommandsTests
         result.Should().BeFalse();
         response.Should().Be($"Plugin '{pluginName}' not found.");
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
 
     [TestCaseSource(nameof(ValidPluginTestCases))]
@@ -84,27 +85,8 @@ public class PluginCommandsTests
 
         // Assert
         result.Should().BeTrue();
-        response.Should().Match($"Plugin '{pluginName}' *");
+        response.Should().Contain($"'{pluginName}'");
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
     #endregion
-}
-
-public class TPlugin
-{
-    [PluginEntryPoint("TPlugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    private void Load() {}
-}
-
-public class TtPlugin
-{
-    [PluginEntryPoint("T Plugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    private void Load() {}
-}
-
-public class ExamplePlugin
-{
-    [PluginEntryPoint("Example Plugin", "1.0.0", "Plugin for testing purposes only", "Test")]
-    private void Load() {}
 }

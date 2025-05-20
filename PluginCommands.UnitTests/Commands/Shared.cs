@@ -1,12 +1,10 @@
 using CommandSystem;
 using FluentAssertions;
+using LabApi.Loader;
+using LabApi.Loader.Features.Plugins;
 using Moq;
-using PluginAPI.Core;
-using PluginAPI.Loader;
 using PluginCommands.Commands;
-using System;
 using System.Collections.Generic;
-using System.Reflection;
 
 namespace PluginCommands.UnitTests.Commands;
 
@@ -45,20 +43,26 @@ public static class Shared
         senderMock.VerifyNoOtherCalls();
     }
 
-    public static void InstallTestPlugins(IEnumerable<object> pluginsToInstall)
+    public static void InstallTestPlugins(IEnumerable<Plugin> pluginsToInstall)
     {
-        var plugins = new Dictionary<Type, PluginHandler>();
-
         foreach (var pl in pluginsToInstall)
         {
-            var pluginType = pl.GetType();
-            plugins.Add(pluginType, new(new("./"), pl, pluginType, []));
+            PluginLoader.Plugins.Add(pl, pl.GetType().Assembly);
         }
-
-        AssemblyLoader.Plugins.Add(Assembly.GetExecutingAssembly(), plugins);
     }
 
-    public static void UninstallTestPlugins() => AssemblyLoader.Plugins.Clear();
+    public static void UninstallTestPlugins() => PluginLoader.Plugins.Clear();
+
+    public static Mock<Plugin> GetPluginMock(string name)
+    {
+        var mock = new Mock<Plugin>(MockBehavior.Strict);
+        mock.Setup(x => x.Name).Returns(name);
+        mock.Setup(x => x.Enable());
+        mock.Setup(x => x.Disable());
+        mock.Setup(x => x.LoadConfigs());
+        mock.Setup(x => x.ToString()).Returns($"'{name}', Version: 1.0.0, Author: 'Test'");
+        return mock;
+    }
 
     private static Mock<CommandSender> GetSender(ulong perms)
     {
