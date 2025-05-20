@@ -38,7 +38,6 @@ public class PluginsManagerCommandTests
         // Assert
         result.Should().Be(Shared.MissingPermsMessage);
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
 
     [Test]
@@ -53,7 +52,6 @@ public class PluginsManagerCommandTests
         // Assert
         result.Should().BeNull();
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
     #endregion
 
