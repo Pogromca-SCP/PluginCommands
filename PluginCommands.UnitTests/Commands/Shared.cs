@@ -4,7 +4,6 @@ using LabApi.Loader;
 using LabApi.Loader.Features.Plugins;
 using Moq;
 using PluginCommands.Commands;
-using System.Collections.Generic;
 
 namespace PluginCommands.UnitTests.Commands;
 
@@ -40,29 +39,11 @@ public static class Shared
         result.Should().BeFalse();
         response.Should().Be(MissingPermsMessage);
         senderMock.VerifyAll();
-        senderMock.VerifyNoOtherCalls();
     }
 
-    public static void InstallTestPlugins(IEnumerable<Plugin> pluginsToInstall)
-    {
-        foreach (var pl in pluginsToInstall)
-        {
-            PluginLoader.Plugins.Add(pl, pl.GetType().Assembly);
-        }
-    }
+    public static void InstallTestPlugin(Plugin pluginToInstall) => PluginLoader.Plugins.Add(pluginToInstall, pluginToInstall.GetType().Assembly);
 
     public static void UninstallTestPlugins() => PluginLoader.Plugins.Clear();
-
-    public static Mock<Plugin> GetPluginMock(string name)
-    {
-        var mock = new Mock<Plugin>(MockBehavior.Strict);
-        mock.Setup(x => x.Name).Returns(name);
-        mock.Setup(x => x.Enable());
-        mock.Setup(x => x.Disable());
-        mock.Setup(x => x.LoadConfigs());
-        mock.Setup(x => x.ToString()).Returns($"'{name}', Version: 1.0.0, Author: 'Test'");
-        return mock;
-    }
 
     private static Mock<CommandSender> GetSender(ulong perms)
     {
