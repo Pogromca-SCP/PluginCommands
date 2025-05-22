@@ -1,4 +1,6 @@
 using FluentAssertions;
+using LabApi.Loader.Features.Plugins;
+using Moq;
 using NUnit.Framework;
 using PluginCommands.Commands;
 
@@ -8,9 +10,6 @@ namespace PluginCommands.UnitTests.Commands;
 public class PluginsManagerCommandTests
 {
     private readonly PluginsManagerCommand _command = new();
-
-    [OneTimeSetUp]
-    public void OneTimeSetUp() => Shared.InstallTestPlugins([Shared.GetPluginMock("TestPlugin").Object]);
 
     [OneTimeTearDown]
     public void OneTimeTearDown() => Shared.UninstallTestPlugins();
@@ -71,6 +70,10 @@ public class PluginsManagerCommandTests
     public void ExecuteParent_ShouldSucceed_WhenGoldFlow()
     {
         // Arrange
+        const string pluginString = "'TestPlugin', Version: 1.0.0, Author: 'Test'";
+        var pluginMock = new Mock<Plugin>(MockBehavior.Strict);
+        pluginMock.Setup(p => p.ToString()).Returns(pluginString);
+        Shared.InstallTestPlugin(pluginMock.Object);
         var senderMock = Shared.GetValidSender();
 
         // Act
@@ -78,8 +81,9 @@ public class PluginsManagerCommandTests
 
         // Assert
         result.Should().BeTrue();
-        response.Should().Be("Currently installed plugins:\n- 'TestPlugin', Version: 1.0.0, Author: 'Test', Status: Unknown\n");
+        response.Should().Be($"Currently installed plugins:\n- {pluginString}, Status: Unknown\n");
         senderMock.VerifyAll();
+        pluginMock.VerifyAll();
     }
     #endregion
 }

@@ -93,9 +93,7 @@ public class PluginsManagerCommand : ParentCommand, IUsageProvider
 
         foreach (var plugin in PluginLoader.Plugins.Keys)
         {
-            sb.Append("- ");
-            sb.Append(plugin.ToString());
-            sb.Append(", Status: ");
+            sb.Append("- ").Append(plugin.ToString()).Append(", Status: ");
 
             sb.Append(plugin.Properties?.IsEnabled switch
             {
