@@ -22,3 +22,4 @@ jobs:
       with:
         plugin-name: PluginCommands
         refs-variable: SL_REFERENCES
+        initial-test-runs: 0
