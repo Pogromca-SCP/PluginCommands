@@ -14,7 +14,6 @@ public class PluginsManagerCommandTests
     [OneTimeTearDown]
     public void OneTimeTearDown() => Shared.UninstallTestPlugins();
 
-    #region CheckPluginsManagementPerms Tests
     [Test]
     public void CheckPluginsManagementPerms_ShouldReturnProperMessage_WhenCommandSenderIsNull()
     {
@@ -52,14 +51,10 @@ public class PluginsManagerCommandTests
         result.Should().BeNull();
         senderMock.VerifyAll();
     }
-    #endregion
 
-    #region Constructor Tests
     [Test]
     public void PluginsManagerCommand_ShouldProperlyInitialize() => _command.AllCommands.Should().HaveCount(4);
-    #endregion
 
-    #region ExecuteParent Tests
     [Test]
     public void ExecuteParent_ShouldFail_WhenCommandSenderIsNull() => Shared.TestCommand_WithNullSender(_command);
 
@@ -85,5 +80,4 @@ public class PluginsManagerCommandTests
         senderMock.VerifyAll();
         pluginMock.VerifyAll();
     }
-    #endregion
 }
