@@ -13,7 +13,6 @@ namespace PluginCommands.UnitTests.Commands;
 [TestFixture]
 public class PluginCommandsTests
 {
-    #region Test Case Sources
     private static readonly ICommand[] _testedCommands =
         [new LoadPluginCommand(), new ReloadPluginCommand(), new UnloadPluginCommand(), new ReloadConfigCommand()];
 
@@ -21,12 +20,10 @@ public class PluginCommandsTests
 
     private static IEnumerable<object[]> MergeCommandsAndPlugins(ICommand[] commands, string[] plugins) =>
         commands.SelectMany(c => plugins.Select<string, object[]>(p => [c, p]));
-    #endregion
 
     [OneTimeTearDown]
     public void OneTimeTearDown() => Shared.UninstallTestPlugins();
 
-    #region Execute Tests
     [TestCaseSource(nameof(_testedCommands))]
     public void Execute_ShouldFail_WhenCommandSenderIsNull(ICommand command) => Shared.TestCommand_WithNullSender(command);
 
@@ -155,5 +152,4 @@ public class PluginCommandsTests
         senderMock.VerifyAll();
         pluginMock.VerifyAll();
     }
-    #endregion
 }
