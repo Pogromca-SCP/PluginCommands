@@ -1,4 +1,4 @@
-using FluentAssertions;
+using AwesomeAssertions;
 using LabApi.Loader.Features.Plugins;
 using Moq;
 using NUnit.Framework;

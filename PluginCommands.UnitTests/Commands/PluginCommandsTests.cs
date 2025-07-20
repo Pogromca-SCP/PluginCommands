@@ -1,5 +1,5 @@
+using AwesomeAssertions;
 using CommandSystem;
-using FluentAssertions;
 using LabApi.Loader;
 using LabApi.Loader.Features.Plugins;
 using Moq;
