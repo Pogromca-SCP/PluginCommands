@@ -20,7 +20,7 @@ public class PluginCommandsPlugin : Plugin
     /// <summary>
     /// Contains current plugin version.
     /// </summary>
-    public const string PluginVersion = "4.0.0";
+    public const string PluginVersion = "4.1.0";
 
     /// <summary>
     /// Contains plugin description.
@@ -46,6 +46,9 @@ public class PluginCommandsPlugin : Plugin
 
     /// <inheritdoc />
     public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
+
+    /// <inheritdoc />
+    public override bool IsTransparent => true;
 
     /// <summary>
     /// Parent command reference for manual commands registration.
