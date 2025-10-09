@@ -13,7 +13,7 @@
 		<Platforms>AnyCPU</Platforms>
 	</PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="Northwood.LabAPI" Version="1.1.2" />
+		<PackageReference Include="Northwood.LabAPI" Version="1.1.3" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp" HintPath="$(SL_REFERENCES)/Assembly-CSharp.dll" />
