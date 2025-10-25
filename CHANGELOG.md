@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [4.1.1] - 2025-10-25
+
+### Changed
+
+- Upgraded project to [LabAPI v1.1.4](https://github.com/northwood-studios/LabAPI/releases/tag/1.1.4).
+
+### Fixed
+
+- Plugin now uses LabAPI wrappers to register commands, so it properly loads on new game version.
+
 ## [4.1.0] - 2025-09-05
 
 ### Changed

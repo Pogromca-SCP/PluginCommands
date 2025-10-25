@@ -1,8 +1,8 @@
 using LabApi.Features;
 using LabApi.Features.Console;
+using LabApi.Features.Wrappers;
 using LabApi.Loader.Features.Plugins;
 using PluginCommands.Commands;
-using RemoteAdmin;
 using System;
 
 namespace PluginCommands;
@@ -20,7 +20,7 @@ public class PluginCommandsPlugin : Plugin
     /// <summary>
     /// Contains current plugin version.
     /// </summary>
-    public const string PluginVersion = "4.1.0";
+    public const string PluginVersion = "4.1.1";
 
     /// <summary>
     /// Contains plugin description.
@@ -66,8 +66,8 @@ public class PluginCommandsPlugin : Plugin
         Logger.Info("Registering plugin commands...");
         var cmd = new PluginsManagerCommand();
         _cmd = cmd;
-        CommandProcessor.RemoteAdminCommandHandler.RegisterCommand(cmd);
-        GameCore.Console.singleton?.ConsoleCommandHandler.RegisterCommand(cmd);
+        Server.RemoteAdminCommandHandler.RegisterCommand(cmd);
+        Server.GameConsoleCommandHandler.RegisterCommand(cmd);
         Logger.Info("Plugin commands are registered.");
     }
 
