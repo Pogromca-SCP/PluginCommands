@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<AssemblyName>PluginCommands</AssemblyName>
 		<RootNamespace>PluginCommands</RootNamespace>
-		<LangVersion>12</LangVersion>
+		<LangVersion>14</LangVersion>
 		<Nullable>enable</Nullable>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Configurations>Release</Configurations>

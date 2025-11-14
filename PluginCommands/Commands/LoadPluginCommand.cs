@@ -29,12 +29,7 @@ public class LoadPluginCommand : PluginCommandBase, ICommand
     {
         plugin.Enable();
         var props = plugin.Properties;
-
-        if (props is not null)
-        {
-            props.IsEnabled = true;
-        }
-
+        props?.IsEnabled = true;
         PluginLoader.EnabledPlugins.Add(plugin);
         return $"Enabled plugin '{plugin.Name}'.";
     }
