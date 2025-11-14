@@ -29,12 +29,7 @@ public class UnloadPluginCommand : PluginCommandBase, ICommand
     {
         plugin.Disable();
         var props = plugin.Properties;
-
-        if (props is not null)
-        {
-            props.IsEnabled = false;
-        }
-
+        props?.IsEnabled = false;
         PluginLoader.EnabledPlugins.Remove(plugin);
         return $"Disabled plugin '{plugin.Name}'.";
     }

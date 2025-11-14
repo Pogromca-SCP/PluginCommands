@@ -6,7 +6,7 @@
 		<OutputType>Library</OutputType>
 		<AssemblyName>PluginCommands.UnitTests</AssemblyName>
 		<RootNamespace>PluginCommands.UnitTests</RootNamespace>
-		<LangVersion>12</LangVersion>
+		<LangVersion>14</LangVersion>
 		<Nullable>enable</Nullable>
 		<Configurations>Release</Configurations>
 		<Platforms>AnyCPU</Platforms>
