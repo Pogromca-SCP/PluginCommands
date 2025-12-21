@@ -10,7 +10,14 @@ LabAPI based plugin for SCP:Secret Laboratory. Provides custom commands for mana
 This plugin was created using [official Northwood Lab API](https://github.com/northwood-studios/LabAPI). No additional dependencies need to be installed in order to run it.
  
 ## Installation
-[Plugins installation guide](https://github.com/northwood-studios/LabAPI/wiki/Installing-Plugins)
+### Automatic
+1. Run `p install Pogromca-SCP/PluginCommands` in the server console.
+2. Restart the server.
+
+### Manual
+1. Download `PluginCommands.dll` file from [latest release](https://github.com/Pogromca-SCP/PluginCommands/releases/latest).
+2. Place downloaded file in your server's plugins folder (default `{ServerDirectory}/LabAPI/plugins/{port|global}`).
+3. Restart the server.
 
 ## Commands
 Commands from this plugin can be accessed from remote admin or server console.
