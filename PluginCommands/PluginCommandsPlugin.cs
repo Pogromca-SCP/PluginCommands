@@ -1,4 +1,3 @@
-using LabApi.Features;
 using LabApi.Features.Console;
 using LabApi.Features.Wrappers;
 using LabApi.Loader.Features.Plugins;
@@ -20,7 +19,7 @@ public class PluginCommandsPlugin : Plugin
     /// <summary>
     /// Contains current plugin version.
     /// </summary>
-    public const string PluginVersion = "4.1.1";
+    public const string PluginVersion = "5.0.0";
 
     /// <summary>
     /// Contains plugin description.
@@ -31,6 +30,11 @@ public class PluginCommandsPlugin : Plugin
     /// Contains plugin author.
     /// </summary>
     public const string PluginAuthor = "Adam Szerszenowicz";
+
+    /// <summary>
+    /// Contains minimal LabAPI version required by this plugin.
+    /// </summary>
+    public const string RequiredVersion = "1.1.6";
 
     /// <inheritdoc />
     public override string Name { get; } = PluginName;
@@ -45,7 +49,7 @@ public class PluginCommandsPlugin : Plugin
     public override Version Version { get; } = new(PluginVersion);
 
     /// <inheritdoc />
-    public override Version RequiredApiVersion { get; } = new(LabApiProperties.CompiledVersion);
+    public override Version RequiredApiVersion { get; } = new(RequiredVersion);
 
     /// <inheritdoc />
     public override bool IsTransparent => true;
@@ -64,10 +68,9 @@ public class PluginCommandsPlugin : Plugin
         }
 
         Logger.Info("Registering plugin commands...");
-        var cmd = new PluginsManagerCommand();
-        _cmd = cmd;
-        Server.RemoteAdminCommandHandler.RegisterCommand(cmd);
-        Server.GameConsoleCommandHandler.RegisterCommand(cmd);
+        _cmd = new PluginsManagerCommand();
+        Server.RemoteAdminCommandHandler.RegisterCommand(_cmd);
+        Server.GameConsoleCommandHandler.RegisterCommand(_cmd);
         Logger.Info("Plugin commands are registered.");
     }
 
